@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>Hexo</title>
+  <title>使用hexo搭建个人博客 | Hexo</title>
   <meta name="author" content="John Doe" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,12 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/search/index.html">
+  <meta name="description" content="一、使用hexo搭建个人博客  初始化过程：&amp;emsp;&amp;emsp;进入hexo使用文档，下载git 和 node.js。&amp;emsp;&amp;emsp;遇到网速慢的情况可以自己配置国内镜像源，更改host文件。  二、使用    hexo -s  启动hexo服务，在本地端口localhost:4000进行效果预览  hexo n &quot;我的第一篇博客文章&quot;  新建一篇自己的博客文章，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo搭建个人博客">
+<meta property="og:url" content="http://example.com/2021/05/21/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、使用hexo搭建个人博客  初始化过程：&amp;emsp;&amp;emsp;进入hexo使用文档，下载git 和 node.js。&amp;emsp;&amp;emsp;遇到网速慢的情况可以自己配置国内镜像源，更改host文件。  二、使用    hexo -s  启动hexo服务，在本地端口localhost:4000进行效果预览  hexo n &quot;我的第一篇博客文章&quot;  新建一篇自己的博客文章，">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2021-05-21T04:15:57.000Z">
+<meta property="article:modified_time" content="2021-05-21T04:15:19.819Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
@@ -133,44 +137,192 @@
                     
 
         <section class="col-md-8">
-    <div class="kratos-hentry kratos-post-inner clearfix">
-        <div class="kratos-post-content">
-            <h2 class="title-h2 text-center">搜索</h2>
-            <form class="input-group" onsubmit="return inpSearch();">
-                <input class="form-input input-lg" id="search-input" maxlength="80" name="s" placeholder="有什么想找找看的呢o(*￣▽￣*)ブ" required type="search">
-                <button class="btn btn-primary" type="submit">找一找~</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="alert alert-info" id="kr-search-notice">
-        这里是 Hexo 的搜索引擎~
-    </div>
-
-    <div id="result-posts">
+    <article>
         <div class="kratos-hentry kratos-post-inner clearfix">
-            <div class="kratos-post-content">
-                <p>搜索多个关键词时请用空格分割，例如「」这样；</p>
-                <p>您也可以使用这些标签碰碰运气哦~</p>
-                <p class="search-demo-tags">
+            <header class="kratos-entry-header">
+                
+                    <h1 class="kratos-entry-title text-center">使用hexo搭建个人博客</h1>
+                
+                
+                <ul class="kratos-post-meta text-center">
+                    <li><i class="fa fa-calendar"></i> 2021-05-21</li>
+                    <li><i class="fa fa-user"></i> 作者 John Doe</li>
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            947
+                        
+                        字
+                    </li>
                     
-                </p>
+                </ul>
+            </header>
+            <div class="kratos-post-content">
+                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                    本文最后编辑于 <time datetime="1621570519819"></time> 前，其中的内容可能需要更新。
+                </div>
+                
+                <hr />
+                <blockquote>
+<p>一、使用hexo搭建个人博客</p>
+</blockquote>
+<p>初始化过程：<br>&emsp;&emsp;进入hexo使用文档，下载git 和 node.js。<br>&emsp;&emsp;遇到网速慢的情况可以自己配置国内镜像源，更改host文件。</p>
+<blockquote>
+<p>二、使用</p>
+</blockquote>
+<ul>
+<li> <code>hexo -s</code></li>
+</ul>
+<p>启动hexo服务，在本地端口localhost:4000进行效果预览</p>
+<ul>
+<li><code>hexo n &quot;我的第一篇博客文章&quot;</code></li>
+</ul>
+<p>新建一篇自己的博客文章，可以在VScode、typora等其他工具进行撰写<br>语法一般使用markdown，基本语法参考：<a target="_blank" rel="noopener" href="http://ibruce.info/2013/11/26/markdown/">markdown简明语法 | 不如 (ibruce.info)</a></p>
+<p>.md文件一般放在 <code>*\source\_posts\</code></p>
+<ul>
+<li><p><code>cd ../..</code>  完成编写后退回至原目录 </p>
+</li>
+<li><p> <code>hexo clean</code>   进行清理</p>
+</li>
+<li><p><code>hexo g</code>  进行生成 </p>
+</li>
+<li><p><code>hexo d</code> 进行部署</p>
+</li>
+</ul>
+<p>🐚补充：<br>想要部署到通过GitHub的域名访问时<br>repo为自己的仓库<br>1、设置_config.yml文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: &#x27;git&#x27;</span><br><span class="line">  repo: https://github.com/Silencoco/silencoco.github.io.git</span><br><span class="line">  main: master</span><br></pre></td></tr></table></figure>
+<p>2、<code>git config --global -l   </code>设置部署到GitHub的用户名以及邮箱</p>
+<blockquote>
+<p>三、设置主题</p>
+</blockquote>
+<p>在<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes | Hexo</a> 中挑选合适的主题<br>通过git克隆到本地的主题文件夹下<br><code>git clone https://github.com/*** themes/&quot;主题名&quot;</code><br>更改配置文件_config.yml(指定刚刚下载的主题)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: kratos</span><br></pre></td></tr></table></figure>
+<p>🏆最后clean再部署启动一下就可以啦~</p>
+<hr>
+<p>Ending···<br>可以参考一下羊哥的视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?from=search&seid=14438404429031205859">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</a></p>
+<p>打开弹幕，遇到的绝大多数错误弹幕中都有提到</p>
+
             </div>
-        </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
     </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/05/21/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/05/21/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/";
+            const title         = "「使用hexo搭建个人博客」";
+            const excerpt       = `
+一、使用hexo搭建个人博客
 
+初始化过程：&emsp;&emsp;进入hexo使用文档，下载git 和 node.js。&emsp;&emsp;遇到网速慢的情况可以自己配置国内镜像源，更改host文件。
+
+二、使用
+
+
+ hexo...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2021-05-21</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" 我的第一篇博客" href="/2021/05/21/我的第一篇博客/">&lt; 上一篇</a>
+                </div>
+                
+                
+            </nav>
+        
+        
+    </article>
 </section>
-
-<script>var searchDataFile = "/search.json";</script>
-<script defer src="/js/local-search.min.js"></script>
 
                 
             
 
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
     <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-        <div class="sticky-area">
     
     
                 <aside id="krw-about" class="widget widget-kratos-about clearfix">
@@ -185,6 +337,8 @@
     </div>
 </aside>
             
+                    <div class="sticky-area">
+                
                 
 
             
