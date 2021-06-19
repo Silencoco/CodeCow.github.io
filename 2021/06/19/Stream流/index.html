@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>Alen_jee's Blog</title>
+  <title>Stream流的学习 | Alen_jee's Blog</title>
   <meta name="author" content="alen_jee" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,19 +13,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="Java" />
   
   <meta name="description" content="1.使用传统的方式,遍历集合,对集合中的数据进行过滤12345678910111213141516171819202122232425262728293031&#x2F;&#x2F;创建一个List集合,存储姓名     List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();     list.add(&quot;张无忌&quot;);     list.add(&amp;quo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Alen_jee&#39;s Blog">
+<meta property="og:title" content="Stream流的学习">
 <meta property="og:url" content="http://example.com/2021/06/19/Stream%E6%B5%81/index.html">
 <meta property="og:site_name" content="Alen_jee&#39;s Blog">
 <meta property="og:description" content="1.使用传统的方式,遍历集合,对集合中的数据进行过滤12345678910111213141516171819202122232425262728293031&#x2F;&#x2F;创建一个List集合,存储姓名     List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();     list.add(&quot;张无忌&quot;);     list.add(&amp;quo">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2021-06-19T12:00:18.183Z">
-<meta property="article:modified_time" content="2021-06-18T13:03:17.728Z">
+<meta property="article:modified_time" content="2021-06-19T12:06:05.079Z">
 <meta property="article:author" content="alen_jee">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/null">
 <meta name="twitter:site" content="@null">
@@ -143,6 +144,8 @@
         <div class="kratos-hentry kratos-post-inner clearfix">
             <header class="kratos-entry-header">
                 
+                    <h1 class="kratos-entry-title text-center">Stream流的学习</h1>
+                
                 
                 <ul class="kratos-post-meta text-center">
                     <li><i class="fa fa-calendar"></i> 2021-06-19</li>
@@ -160,8 +163,12 @@
             </header>
             <div class="kratos-post-content">
                 <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1624021397728"></time> 前，其中的内容可能需要更新。
+                    本文最后编辑于 <time datetime="1624104365079"></time> 前，其中的内容可能需要更新。
                 </div>
+                
+                    <div class="kratos-post-inner-toc">
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%96%B9%E5%BC%8F-%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88-%E5%AF%B9%E9%9B%86%E5%90%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">1.使用传统的方式,遍历集合,对集合中的数据进行过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BD%BF%E7%94%A8Stream%E6%B5%81%E7%9A%84%E6%96%B9%E5%BC%8F-%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88-%E5%AF%B9%E9%9B%86%E5%90%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">1-1.使用Stream流的方式,遍历集合,对集合中的数据进行过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stream%E6%B5%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">stream流介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-java-util-stream-Stream%E6%98%AFJava-8%E6%96%B0%E5%8A%A0%E5%85%A5%E7%9A%84%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B5%81%E6%8E%A5%E5%8F%A3%E3%80%82%EF%BC%88%E8%BF%99%E5%B9%B6%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E3%80%82%EF%BC%89%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E6%B5%81%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%EF%BC%8C%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">2.java.util.stream.Stream是Java 8新加入的最常用的流接口。（这并不是一个函数式接口。）获取一个流非常简单，有以下几种常用的方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-forEach"><span class="toc-number">3.2.</span> <span class="toc-text">2-1 ：Stream流中的常用方法_forEach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%EF%BC%9A-Stream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-filter-%E7%94%A8%E4%BA%8E%E5%AF%B9Stream%E6%B5%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">2-2 ： Stream流中的常用方法_filter:用于对Stream流中的数据进行过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-map-%E7%94%A8%E4%BA%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.4.</span> <span class="toc-text">2-3 ：Stream流中的常用方法_map:用于类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-count-%E7%94%A8%E4%BA%8E%E7%BB%9F%E8%AE%A1Stream%E6%B5%81%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="toc-number">3.5.</span> <span class="toc-text">2-4 ：Stream流中的常用方法_count:用于统计Stream流中元素的个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-limit-%E7%94%A8%E4%BA%8E%E6%88%AA%E5%8F%96%E6%B5%81%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">3.6.</span> <span class="toc-text">2-5：Stream流中的常用方法_limit:用于截取流中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-skip-%E7%94%A8%E4%BA%8E%E8%B7%B3%E8%BF%87%E5%85%83%E7%B4%A0"><span class="toc-number">3.7.</span> <span class="toc-text">2-6：Stream流中的常用方法_skip:用于跳过元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-concat-%E7%94%A8%E4%BA%8E%E6%8A%8A%E6%B5%81%E7%BB%84%E5%90%88%E5%88%B0%E4%B8%80%E8%B5%B7"><span class="toc-number">3.8.</span> <span class="toc-text">2-7：Stream流中的常用方法_concat:用于把流组合到一起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8%EF%BC%9A%E7%BB%83%E4%B9%A0%EF%BC%9A%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0%E5%A4%84%E7%90%86%EF%BC%88Stream%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">3.9.</span> <span class="toc-text">2-8：练习：集合元素处理（Stream方式）</span></a></li></ol></li></ol>
+                    </div>
                 
                 <hr />
                 <h2 id="1-使用传统的方式-遍历集合-对集合中的数据进行过滤"><a href="#1-使用传统的方式-遍历集合-对集合中的数据进行过滤" class="headerlink" title="1.使用传统的方式,遍历集合,对集合中的数据进行过滤"></a>1.使用传统的方式,遍历集合,对集合中的数据进行过滤</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个List集合,存储姓名</span></span><br><span class="line">     List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     list.add(<span class="string">&quot;张无忌&quot;</span>);</span><br><span class="line">     list.add(<span class="string">&quot;周芷若&quot;</span>);</span><br><span class="line">     list.add(<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">     list.add(<span class="string">&quot;张强&quot;</span>);</span><br><span class="line">     list.add(<span class="string">&quot;张三丰&quot;</span>);</span><br><span class="line">     <span class="comment">//对list集合中的元素进行过滤,只要以张开头的元素,存储到一个新的集合中</span></span><br><span class="line">     List&lt;String&gt; listA = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     <span class="keyword">for</span>(String s : list)&#123;</span><br><span class="line">         <span class="keyword">if</span>(s.startsWith(<span class="string">&quot;张&quot;</span>))&#123;</span><br><span class="line">             listA.add(s);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//对listA集合进行过滤,只要姓名长度为3的人,存储到一个新集合中</span></span><br><span class="line">     List&lt;String&gt; listB = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     <span class="keyword">for</span> (String s : listA) &#123;</span><br><span class="line">         <span class="keyword">if</span>(s.length()==<span class="number">3</span>)&#123;</span><br><span class="line">             listB.add(s);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//遍历listA集合</span></span><br><span class="line"> <span class="keyword">for</span> (String s : listA) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;listA=&quot;</span>+s);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//遍历listB集合</span></span><br><span class="line"> <span class="keyword">for</span> (String s : listB) &#123;</span><br><span class="line">     System.out.println(<span class="string">&quot;listB=&quot;</span>+s);</span><br><span class="line"> &#125;</span><br><span class="line">结果集：</span><br></pre></td></tr></table></figure>
@@ -312,7 +319,7 @@
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://example.com/2021/06/19/Stream%E6%B5%81/";
-            const title         = "「」";
+            const title         = "「Stream流的学习」";
             const excerpt       = `1.使用传统的方式,遍历集合,对集合中的数据进行过滤12345678910111213141516171819202122232425262728293031//创建一个List集合,存储姓名     List&lt;String&g...`;
             let _URL;
             switch (dest) {
@@ -332,10 +339,10 @@
                 <div class="footer-tag clearfix">
                     <div class="pull-left">
                     <i class="fa fa-tags"></i>
-                        
+                        <a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>
                     </div>
                     <div class="pull-date">
-                    <span>最后编辑：2021-06-18</span>
+                    <span>最后编辑：2021-06-19</span>
                     </div>
                 </div>
             </footer>
@@ -404,10 +411,22 @@
             
                     <div class="sticky-area">
                 
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%96%B9%E5%BC%8F-%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88-%E5%AF%B9%E9%9B%86%E5%90%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-text">1.使用传统的方式,遍历集合,对集合中的数据进行过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BD%BF%E7%94%A8Stream%E6%B5%81%E7%9A%84%E6%96%B9%E5%BC%8F-%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88-%E5%AF%B9%E9%9B%86%E5%90%88%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-text">1-1.使用Stream流的方式,遍历集合,对集合中的数据进行过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stream%E6%B5%81%E4%BB%8B%E7%BB%8D"><span class="toc-text">stream流介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-java-util-stream-Stream%E6%98%AFJava-8%E6%96%B0%E5%8A%A0%E5%85%A5%E7%9A%84%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B5%81%E6%8E%A5%E5%8F%A3%E3%80%82%EF%BC%88%E8%BF%99%E5%B9%B6%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E3%80%82%EF%BC%89%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E6%B5%81%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%EF%BC%8C%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">2.java.util.stream.Stream是Java 8新加入的最常用的流接口。（这并不是一个函数式接口。）获取一个流非常简单，有以下几种常用的方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-forEach"><span class="toc-text">2-1 ：Stream流中的常用方法_forEach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%EF%BC%9A-Stream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-filter-%E7%94%A8%E4%BA%8E%E5%AF%B9Stream%E6%B5%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-text">2-2 ： Stream流中的常用方法_filter:用于对Stream流中的数据进行过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-map-%E7%94%A8%E4%BA%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">2-3 ：Stream流中的常用方法_map:用于类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-count-%E7%94%A8%E4%BA%8E%E7%BB%9F%E8%AE%A1Stream%E6%B5%81%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="toc-text">2-4 ：Stream流中的常用方法_count:用于统计Stream流中元素的个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-limit-%E7%94%A8%E4%BA%8E%E6%88%AA%E5%8F%96%E6%B5%81%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-text">2-5：Stream流中的常用方法_limit:用于截取流中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-skip-%E7%94%A8%E4%BA%8E%E8%B7%B3%E8%BF%87%E5%85%83%E7%B4%A0"><span class="toc-text">2-6：Stream流中的常用方法_skip:用于跳过元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7%EF%BC%9AStream%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-concat-%E7%94%A8%E4%BA%8E%E6%8A%8A%E6%B5%81%E7%BB%84%E5%90%88%E5%88%B0%E4%B8%80%E8%B5%B7"><span class="toc-text">2-7：Stream流中的常用方法_concat:用于把流组合到一起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8%EF%BC%9A%E7%BB%83%E4%B9%A0%EF%BC%9A%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0%E5%A4%84%E7%90%86%EF%BC%88Stream%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">2-8：练习：集合元素处理（Stream方式）</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaSE/">JavaSE</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%AD%E5%BB%BA%E5%88%9D%E6%9C%9F/">搭建初期</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaSE/">JavaSE</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Stream/">Stream</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%AD%E5%BB%BA%E5%88%9D%E6%9C%9F/">搭建初期</a><span class="category-list-count">2</span></li></ul>
   </aside>
 
 
@@ -416,7 +435,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a>
+        <a href="/tags/Java/" style="font-size: 0.8em;">Java</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a>
       </div>
   </aside>
 
@@ -429,6 +448,9 @@
         
         
           
+          
+            <a class="list-group-item" href="/2021/06/19/Stream%E6%B5%81/"><i class="fa  fa-book"></i> Stream流的学习</a>
+            
           
         
           
@@ -456,11 +478,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2021/05/21/hello-world/"><i class="fa  fa-book"></i> Hello World</a>
             
-          
-        
       </ul>
   </div>
   </aside>
