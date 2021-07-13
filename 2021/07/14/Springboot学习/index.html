@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>Springboot初体验 | Alen_jee's Blog</title>
+  <meta name="author" content="alen_jee" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Springboot" />
+  
+  <meta name="description" content="学习内容为Springboot2  环境：  java 8及以上 maven 3.3及以上   一、SpringBoot属于SpringSpring能干什么？ 微服务 异步反应式开发 云 开发网络应用 灵活部署 业务监控 自动化  二、 为什么使用Springboot？能快速创建出生产级别的Spring应用 优点：  创建独立Spring应用  内嵌web服务器  自动starter依赖，简化构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot初体验">
+<meta property="og:url" content="http://example.com/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Alen_jee&#39;s Blog">
+<meta property="og:description" content="学习内容为Springboot2  环境：  java 8及以上 maven 3.3及以上   一、SpringBoot属于SpringSpring能干什么？ 微服务 异步反应式开发 云 开发网络应用 灵活部署 业务监控 自动化  二、 为什么使用Springboot？能快速创建出生产级别的Spring应用 优点：  创建独立Spring应用  内嵌web服务器  自动starter依赖，简化构建">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2021-07-13T17:42:20.960Z">
+<meta property="article:modified_time" content="2021-07-13T17:45:54.439Z">
+<meta property="article:author" content="alen_jee">
+<meta property="article:tag" content="Springboot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+  <!-- 添加头像旋转功能 -->
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">原创主题博客</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">主题链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Alen_jee&#39;s Blog</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Alen_jee&#39;s Blog</h2> <br />
+                        <span>不积跬步，无以至千里；不积小流，无以成江海。</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        <section class="col-md-8">
+    <article>
+        <div class="kratos-hentry kratos-post-inner clearfix">
+            <header class="kratos-entry-header">
+                
+                    <h1 class="kratos-entry-title text-center">Springboot初体验</h1>
+                
+                
+                <ul class="kratos-post-meta text-center">
+                    <li><i class="fa fa-calendar"></i> 2021-07-14</li>
+                    <li><i class="fa fa-user"></i> 作者 alen_jee</li>
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~3.21K
+                        
+                        字
+                    </li>
+                    
+                </ul>
+            </header>
+            <div class="kratos-post-content">
+                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                    本文最后编辑于 <time datetime="1626198354439"></time> 前，其中的内容可能需要更新。
+                </div>
+                
+                    <div class="kratos-post-inner-toc">
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81SpringBoot%E5%B1%9E%E4%BA%8ESpring"><span class="toc-number">1.</span> <span class="toc-text">一、SpringBoot属于Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Spring能干什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Springboot%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">二、 为什么使用Springboot？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">三、时代背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BA%91%E5%8E%9F%E7%94%9F"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 云原生</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SpringBoot2%E5%85%A5%E9%97%A8"><span class="toc-number">4.</span> <span class="toc-text">四、SpringBoot2入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 系统要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-maven%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 maven设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%9C%80%E6%B1%82"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%88%9B%E5%BB%BAmaven%E5%B7%A5%E7%A8%8B%E5%B9%B6%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 创建maven工程并引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%88%9B%E5%BB%BA%E4%B8%BB%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 创建主程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E7%BC%96%E5%86%99%E4%B8%9A%E5%8A%A1"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 编写业务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E7%AE%80%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="toc-number">4.7.</span> <span class="toc-text">4.7 简化配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E7%AE%80%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-number">4.8.</span> <span class="toc-text">4.8 简化部署</span></a></li></ol></li></ol>
+                    </div>
+                
+                <hr />
+                <p>学习内容为Springboot2 </p>
+<p>环境：</p>
+<ul>
+<li>java 8及以上</li>
+<li>maven 3.3及以上</li>
+</ul>
+<hr>
+<h2 id="一、SpringBoot属于Spring"><a href="#一、SpringBoot属于Spring" class="headerlink" title="一、SpringBoot属于Spring"></a>一、<strong>SpringBoot</strong>属于<strong>Spring</strong></h2><h3 id="Spring能干什么？"><a href="#Spring能干什么？" class="headerlink" title="Spring能干什么？"></a>Spring能干什么？</h3><ul>
+<li>微服务</li>
+<li>异步反应式开发</li>
+<li>云</li>
+<li>开发网络应用</li>
+<li>灵活部署</li>
+<li>业务监控</li>
+<li>自动化</li>
+</ul>
+<h2 id="二、-为什么使用Springboot？"><a href="#二、-为什么使用Springboot？" class="headerlink" title="二、 为什么使用Springboot？"></a>二、 为什么使用Springboot？</h2><p>能快速创建出生产级别的Spring应用</p>
+<p>优点：</p>
+<ul>
+<li><p>创建独立Spring应用</p>
+</li>
+<li><p>内嵌web服务器</p>
+</li>
+<li><p>自动starter依赖，简化构建配置</p>
+</li>
+<li><p>自动配置Spring以及第三方功能</p>
+</li>
+<li><p>提供生产级别的监控、健康检查及外部化配置</p>
+</li>
+<li><p>无代码生成、无需编写XML</p>
+</li>
+</ul>
+<blockquote>
+<p>SpringBoot是整合Spring技术栈的一站式框架</p>
+<p>SpringBoot是简化Spring技术栈的快速开发脚手架</p>
+</blockquote>
+<p>缺点：</p>
+<ul>
+<li>人称版本帝，迭代快，需要时刻关注变化</li>
+<li>封装太深，内部原理复杂，不容易精通</li>
+</ul>
+<h2 id="三、时代背景"><a href="#三、时代背景" class="headerlink" title="三、时代背景"></a>三、时代背景</h2><h3 id="3-1-微服务"><a href="#3-1-微服务" class="headerlink" title="3.1 微服务"></a>3.1 微服务</h3><ul>
+<li><p>微服务是一种架构风格</p>
+</li>
+<li><p>一个应用拆分为一组小型服务</p>
+</li>
+<li><p>每个服务运行在自己的进程内，也就是可独立部署和升级</p>
+</li>
+<li><p>服务之间使用轻量级HTTP交互</p>
+</li>
+<li><p>服务围绕业务功能拆分</p>
+</li>
+<li><p>可以由全自动部署机制独立部署</p>
+</li>
+<li><p>去中心化，服务自治。服务可以使用不同的语言、不同的存储技术</p>
+</li>
+</ul>
+<h3 id="3-2-分布式"><a href="#3-2-分布式" class="headerlink" title="3.2 分布式"></a>3.2 分布式</h3><p>SpringBoot + SpringCloud</p>
+<h3 id="3-3-云原生"><a href="#3-3-云原生" class="headerlink" title="3.3 云原生"></a>3.3 云原生</h3><p>Cloud Native</p>
+<h2 id="四、SpringBoot2入门"><a href="#四、SpringBoot2入门" class="headerlink" title="四、SpringBoot2入门"></a>四、SpringBoot2入门</h2><h3 id="4-1-系统要求"><a href="#4-1-系统要求" class="headerlink" title="4.1 系统要求"></a>4.1 系统要求</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.java.com/">Java 8</a> &amp; 兼容java14 .</p>
+</li>
+<li><p>Maven 3.3+</p>
+</li>
+<li><p>idea 2019.1.2</p>
+</li>
+</ul>
+<h3 id="4-2-maven设置"><a href="#4-2-maven设置" class="headerlink" title="4.2 maven设置"></a>4.2 maven设置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-需求"><a href="#4-3-需求" class="headerlink" title="4.3 需求"></a>4.3 需求</h3><p>浏览发送/hello请求，响应 Hello，Spring Boot 2 </p>
+<h3 id="4-4-创建maven工程并引入依赖"><a href="#4-4-创建maven工程并引入依赖" class="headerlink" title="4.4 创建maven工程并引入依赖"></a>4.4 创建maven工程并引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-创建主程序"><a href="#4-5-创建主程序" class="headerlink" title="4.5 创建主程序"></a>4.5 创建主程序</h3><p>src–main–java–com.xxx.MainApplication.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 主程序类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@SpringBootApplication</span>：这是一个SpringBoot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MainApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-6-编写业务"><a href="#4-6-编写业务" class="headerlink" title="4.6 编写业务"></a>4.6 编写业务</h3><p>src–main–java–com.xxx.controller.Controller.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, Spring Boot 2!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@RestController = @ResponseBody+@Controller</p>
+</blockquote>
+<h3 id="4-7-简化配置"><a href="#4-7-简化配置" class="headerlink" title="4.7 简化配置"></a>4.7 简化配置</h3><p>resources–application.properties</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8888</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置端口号 等信息</p>
+</blockquote>
+<h3 id="4-8-简化部署"><a href="#4-8-简化部署" class="headerlink" title="4.8 简化部署"></a>4.8 简化部署</h3><p>在pom.xml下添加插件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/21293435-14dab972ee0b2257.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/458/format/webp" alt="img"></p>
+<p>将web项目打包成jar包</p>
+<p>通过cmd下  进入target目录</p>
+<p>javac -jar 项目.jar 即可部署项目到当前服务器上，项目内自带了Tomcat的服务器，从而简化了服务器的配置</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/21293435-c71f8d41ef967845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/790/format/webp" alt="img"></p>
+
+            </div>
+            
+                <div class="kratos-copyright text-center clearfix">
+                    <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                </div>
+            
+            <footer class="kratos-entry-footer clearfix">
+                
+                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                    
+                    
+                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                        <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/";
+            const title         = "「Springboot初体验」";
+            const excerpt       = `学习内容为Springboot2 
+环境：
+
+java 8及以上
+maven 3.3及以上
+
+
+一、SpringBoot属于SpringSpring能干什么？
+微服务
+异步反应式开发
+云
+开发网络应用
+灵活部署
+业务监控
+自动化
+
+二...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                    
+                    </div>
+                
+                <div class="footer-tag clearfix">
+                    <div class="pull-left">
+                    <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/Springboot/" rel="tag">Springboot</a>
+                    </div>
+                    <div class="pull-date">
+                    <span>最后编辑：2021-07-14</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+            <nav class="navigation post-navigation clearfix" role="navigation">
+                
+                <div class="nav-previous clearfix">
+                    <a title=" SSM整合开发思路" href="/2021/07/06/SSM整合开发思路/">&lt; 上一篇</a>
+                </div>
+                
+                
+            </nav>
+        
+        
+            <div id="disqus_thread" class="post-comments lazy-load"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '2021/07/14/Springboot学习/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    var load_comm = () => {
+        if (typeof DISQUS == 'undefined') {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://silencoco.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        } else {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.url = 'http://example.com/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/';  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = '2021/07/14/Springboot学习/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                }
+            });
+        }
+    };
+    
+</script>
+<script async id="dsq-count-scr" src="//silencoco.disqus.com/count.js"></script>
+
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
+    </article>
+</section>
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Knowledge is infinite</p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81SpringBoot%E5%B1%9E%E4%BA%8ESpring"><span class="toc-text">一、SpringBoot属于Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">Spring能干什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Springboot%EF%BC%9F"><span class="toc-text">二、 为什么使用Springboot？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF"><span class="toc-text">三、时代背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">3.1 微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">3.2 分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BA%91%E5%8E%9F%E7%94%9F"><span class="toc-text">3.3 云原生</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SpringBoot2%E5%85%A5%E9%97%A8"><span class="toc-text">四、SpringBoot2入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="toc-text">4.1 系统要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-maven%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.2 maven设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%9C%80%E6%B1%82"><span class="toc-text">4.3 需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%88%9B%E5%BB%BAmaven%E5%B7%A5%E7%A8%8B%E5%B9%B6%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-text">4.4 创建maven工程并引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%88%9B%E5%BB%BA%E4%B8%BB%E7%A8%8B%E5%BA%8F"><span class="toc-text">4.5 创建主程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E7%BC%96%E5%86%99%E4%B8%9A%E5%8A%A1"><span class="toc-text">4.6 编写业务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E7%AE%80%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="toc-text">4.7 简化配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E7%AE%80%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text">4.8 简化部署</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Ajax/">Ajax</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaSE/">JavaSE</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSM/">SSM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%90%AD%E5%BB%BA%E5%88%9D%E6%9C%9F/">搭建初期</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/JDBC/" style="font-size: 0.6em;">JDBC</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/JavaWeb/" style="font-size: 0.6em;">JavaWeb</a> <a href="/tags/SSM/" style="font-size: 0.8em;">SSM</a> <a href="/tags/Springboot/" style="font-size: 0.6em;">Springboot</a> <a href="/tags/git/" style="font-size: 0.6em;">git</a> <a href="/tags/hexo/" style="font-size: 0.7em;">hexo</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/14/Springboot%E5%AD%A6%E4%B9%A0/"><i class="fa  fa-book"></i> Springboot初体验</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/06/SSM%E6%95%B4%E5%90%88%E5%BC%80%E5%8F%91%E6%80%9D%E8%B7%AF/"><i class="fa  fa-book"></i> SSM整合开发思路</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/06/HTTP%E4%B8%ADGET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/"><i class="fa  fa-book"></i> GET和POST两种基本请求方法的区别</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/04/SSM-SpringMVC/"><i class="fa  fa-book"></i> SSM-springmvc框架学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/06/26/SSM-Spring/"><i class="fa  fa-book"></i> SSM-Spring框架学习</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2021 Alen_jee's Blog 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by alen_jee.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
