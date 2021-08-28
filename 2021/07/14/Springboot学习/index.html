@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/null">
 <meta property="article:published_time" content="2021-07-13T17:42:20.960Z">
-<meta property="article:modified_time" content="2021-07-13T17:47:47.576Z">
+<meta property="article:modified_time" content="2021-07-13T18:40:06.544Z">
 <meta property="article:author" content="alen_jee">
 <meta property="article:tag" content="Springboot">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~3.21K
+                            ~3.31K
                         
                         字
                     </li>
@@ -163,7 +163,7 @@
             </header>
             <div class="kratos-post-content">
                 <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1626198467576"></time> 前，其中的内容可能需要更新。
+                    本文最后编辑于 <time datetime="1626201606544"></time> 前，其中的内容可能需要更新。
                 </div>
                 
                     <div class="kratos-post-inner-toc">
@@ -246,6 +246,9 @@
 <h3 id="4-5-创建主程序"><a href="#4-5-创建主程序" class="headerlink" title="4.5 创建主程序"></a>4.5 创建主程序</h3><p>src–main–java–com.xxx.MainApplication.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 主程序类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@SpringBootApplication</span>：这是一个SpringBoot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MainApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>@SpringBootApplication = @SpringBootConfiguration+ @EnableAutoConfiguration+ @ComponentScan</p>
+</blockquote>
 <h3 id="4-6-编写业务"><a href="#4-6-编写业务" class="headerlink" title="4.6 编写业务"></a>4.6 编写业务</h3><p>src–main–java–com.xxx.controller.Controller.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, Spring Boot 2!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
